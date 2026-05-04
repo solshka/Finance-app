@@ -25,10 +25,11 @@ export interface Stock {
 export interface FinanceState {
   transactions: Transaction[];
   stocks: Stock[];
-  addTransaction: (t: Omit<Transaction, 'id' | 'createdAt'>) => void;
-  updateTransaction: (id: string, t: Partial<Omit<Transaction, 'id' | 'createdAt'>>) => void;
-  deleteTransaction: (id: string) => void;
-  addStock: (s: Omit<Stock, 'id' | 'updatedAt'>) => void;
-  updateStock: (id: string, s: Partial<Omit<Stock, 'id'>>) => void;
-  deleteStock: (id: string) => void;
+  hydrate: (transactions: Transaction[], stocks: Stock[]) => void;
+  addTransaction: (t: Omit<Transaction, 'id' | 'createdAt'>) => Promise<void>;
+  updateTransaction: (id: string, t: Partial<Omit<Transaction, 'id' | 'createdAt'>>) => Promise<void>;
+  deleteTransaction: (id: string) => Promise<void>;
+  addStock: (s: Omit<Stock, 'id' | 'updatedAt'>) => Promise<void>;
+  updateStock: (id: string, s: Partial<Omit<Stock, 'id'>>) => Promise<void>;
+  deleteStock: (id: string) => Promise<void>;
 }
